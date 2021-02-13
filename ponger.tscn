@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/corner.png" type="Texture" id=1]
 [ext_resource path="res://assets/paddleP.png" type="Texture" id=2]
@@ -12,8 +12,7 @@
 [ext_resource path="res://LBpaddle.gd" type="Script" id=10]
 [ext_resource path="res://LUpaddle.gd" type="Script" id=11]
 [ext_resource path="res://RBpaddle.gd" type="Script" id=12]
-
-[sub_resource type="GDScript" id=9]
+[ext_resource path="res://game.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 6.47988, 6.44437 )
@@ -39,8 +38,11 @@ extents = Vector2( 6.83514, 37.5614 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 37.5132, 6.72175 )
 
+[sub_resource type="CircleShape2D" id=10]
+radius = 11.2623
+
 [node name="Game" type="Node2D"]
-script = SubResource( 9 )
+script = ExtResource( 13 )
 
 [node name="bg" type="Sprite" parent="."]
 position = Vector2( 320, 319.567 )
@@ -176,25 +178,20 @@ shape = SubResource( 3 )
 
 [node name="sprite" type="Sprite" parent="RUpaddle"]
 position = Vector2( 320.21, 18.1739 )
+rotation = 3.14159
 scale = Vector2( 2.30973, 2.30973 )
 texture = ExtResource( 4 )
 
 [node name="Ball" type="KinematicBody2D" parent="."]
-position = Vector2( -202, 197.283 )
 script = ExtResource( 7 )
 
 [node name="sprite" type="Sprite" parent="Ball"]
-position = Vector2( 521.965, 123.774 )
+position = Vector2( 319.965, 321.057 )
 scale = Vector2( 1.87026, 1.87026 )
 texture = ExtResource( 3 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ball" groups=[
-"ball",
-]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 visible = false
-position = Vector2( 521.965, 123.774 )
-scale = Vector2( 1.87026, 1.87026 )
-polygon = PoolVector2Array( 2.07724, 5.97639, 2.07724, 5.97639, 4.05994, 5.12667, 4.98047, 4.13533, 6.0426, 1.94023, 5.9718, -1.95432, 5.05127, -3.86618, 4.20157, -4.99914, 1.93564, -5.99048, -1.88809, -5.99048, -4.08322, -5.14076, -4.93292, -3.93699, -5.85345, -2.02512, -5.99509, 1.94023, -5.00372, 3.99371, -4.08322, 5.05586, -2.10052, 6.11801 )
-
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Ball"]
-position = Vector2( 202, -197.283 )
+position = Vector2( 320, 320.939 )
+rotation = -2.28464
+shape = SubResource( 10 )
